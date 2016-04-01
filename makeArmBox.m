@@ -1,4 +1,5 @@
 function box = makeArmBox( row, side )
+    dims = row.imgdims;
     % get main parts
     if( strcmp(side,'left') )
         sho = row.coords(:,lookupPart('lsho'));
@@ -24,6 +25,21 @@ function box = makeArmBox( row, side )
     
 %     allCoords = [sho elb wri max_wri min_wri];
     allCoords = [sho elb wri max_sho max_elb max_wri min_sho min_elb min_wri];
-    box = makeBox(allCoords);
+    assumedBox = makeBox(allCoords);
+    
+    if assumedBox(1) < 0
+        assumedBox(1) = 0;
+    end
+    if assumedBox(2) < 0
+        assumedBox(2) = 0;
+    end
+    if assumedBox(3) > dims(2)
+        assumedBox(3) = dims(2);
+    end
+    if assumedBox(4) > dims(1)
+        assumedBox(4) = dims(1);
+    end
+    
+    box = assumedBox;
 end
 
