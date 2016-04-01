@@ -1,17 +1,27 @@
-function box = makeFaceBox( row )
+function box = upperBodyBox( row )
     dims = row.imgdims;
+    
+    lsho = row.coords(:,lookupPart('lsho'));
+    lelb = row.coords(:,lookupPart('lelb'));
+    lwri = row.coords(:,lookupPart('lwri'));
+    
+    rsho = row.coords(:,lookupPart('rsho'));
+    relb = row.coords(:,lookupPart('relb'));
+    rwri = row.coords(:,lookupPart('rwri'));
     
     leye = row.coords(:,lookupPart('leye'));
     reye = row.coords(:,lookupPart('reye'));
-    nose = row.coords(:,lookupPart('nose'));
     
-    allCoords = [leye reye nose];
+    lhip = row.coords(:,lookupPart('lhip'));
+    rhip = row.coords(:,lookupPart('rhip'));
+    
+    allCoords = [lsho lelb lwri rsho relb rwri leye reye lhip rhip];
     assumedBox = makeBox(allCoords);
     
     width = assumedBox(3) - assumedBox(1);
     height = assumedBox(4) - assumedBox(2);
-    diff_width = 1.5 * width
-    diff_height = 2.5 * height
+    diff_width = 0.2 * width
+    diff_height = 0.23 * height
     
     assumedBox(1) = assumedBox(1) - diff_width;
     assumedBox(2) = assumedBox(2) - diff_height;

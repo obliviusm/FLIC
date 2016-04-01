@@ -12,7 +12,10 @@ leftArmBox = makeArmBox(examples(i), 'left');
 plotbox(leftArmBox,'w--')
 
 rightArmBox = makeArmBox(examples(i), 'right');
-plotbox(rightArmBox,'w--')
+plotbox(rightArmBox,'o--')
 
 faceBox = makeFaceBox(examples(i));
-plotbox(faceBox,'w--')
+plotbox(faceBox,'m--')
+
+bodyBox = upperBodyBox(examples(i));
+plotbox(bodyBox,'g--')
