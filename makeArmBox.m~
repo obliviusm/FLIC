@@ -1,0 +1,14 @@
+function box = makeArmBox( row )
+    % get main parts
+    lsho = row.coords(:,lookupPart('lsho'));
+    lelb = row.coords(:,lookupPart('lelb'));
+    lwri = row.coords(:,lookupPart('lwri'));
+    % make some distance from wrist (try to get palm as well)
+    diff = 20;
+    max_lwri = lwri + diff;
+    min_lwri = lwri - diff;
+    
+    allCoords = [lsho lelb lwri max_lwri min_lwri];
+    box = makeBox(allCoords);
+end
+
