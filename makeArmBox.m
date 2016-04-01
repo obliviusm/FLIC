@@ -1,8 +1,14 @@
-function box = makeArmBox( row )
+function box = makeArmBox( row, side )
     % get main parts
-    sho = row.coords(:,lookupPart('lsho'));
-    elb = row.coords(:,lookupPart('lelb'));
-    wri = row.coords(:,lookupPart('lwri'));
+    if( strcmp(side,'left') )
+        sho = row.coords(:,lookupPart('lsho'));
+        elb = row.coords(:,lookupPart('lelb'));
+        wri = row.coords(:,lookupPart('lwri'));
+    else
+        sho = row.coords(:,lookupPart('rsho'));
+        elb = row.coords(:,lookupPart('relb'));
+        wri = row.coords(:,lookupPart('rwri'));
+    end
     
     diff = 10;
     max_sho = sho + diff;
