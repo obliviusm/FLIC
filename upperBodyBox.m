@@ -16,12 +16,18 @@ function box = upperBodyBox( row )
     rhip = row.coords(:,lookupPart('rhip'));
     
     allCoords = [lsho lelb lwri rsho relb rwri leye reye lhip rhip];
+    
+    if max(isnan(allCoords)) == 1
+        box = false;
+        return;
+    end
+    
     assumedBox = makeBox(allCoords);
     
     width = assumedBox(3) - assumedBox(1);
     height = assumedBox(4) - assumedBox(2);
-    diff_width = 0.2 * width
-    diff_height = 0.23 * height
+    diff_width = 0.2 * width;
+    diff_height = 0.23 * height;
     
     assumedBox(1) = assumedBox(1) - diff_width;
     assumedBox(2) = assumedBox(2) - diff_height;
