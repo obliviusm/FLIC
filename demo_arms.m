@@ -2,7 +2,7 @@ load examples.mat
 imgdir = './images/';
 
 i = 3100;
-% i = randi(length(examples));
+i = randi(length(examples));
 
 img = imread([imgdir,'/',examples(i).filepath]);
 cla, imagesc(img), axis image, hold on
@@ -11,7 +11,10 @@ cla, imagesc(img), axis image, hold on
 % plotbox(examples(i).torsobox,'w--')
 % leftArmParts = examples(i).coords(:,lookupPart('lsho','lelb','lwri'));
 % leftArmBox = makeBox(leftArmParts);
-leftArmBox = makeArmBox(examples(i), 'right');
+leftArmBox = makeArmBox(examples(i), 'left');
 plotbox(leftArmBox,'w--')
+
+rightArmBox = makeArmBox(examples(i), 'right');
+plotbox(rightArmBox,'w--')
 % myplot(armParts,'go-','linewidth',3)
 
