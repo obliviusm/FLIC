@@ -3,18 +3,16 @@ imgdir = './images/';
 
 i = 3100;
 i = randi(length(examples));
+% i = 97;
 
 img = imread([imgdir,'/',examples(i).filepath]);
 cla, imagesc(img), axis image, hold on
 
-% display torso detected by berkeley poselets
-% plotbox(examples(i).torsobox,'w--')
-% leftArmParts = examples(i).coords(:,lookupPart('lsho','lelb','lwri'));
-% leftArmBox = makeBox(leftArmParts);
 leftArmBox = makeArmBox(examples(i), 'left');
 plotbox(leftArmBox,'w--')
 
 rightArmBox = makeArmBox(examples(i), 'right');
 plotbox(rightArmBox,'w--')
-% myplot(armParts,'go-','linewidth',3)
 
+faceBox = makeFaceBox(examples(i));
+plotbox(faceBox,'w--')
