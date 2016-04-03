@@ -1,7 +1,7 @@
-load examples.mat
-imgdir = './images/';
-% imgdir = './body_img/';
-% load examples_cropped.mat
+% load examples.mat
+% imgdir = './images/';
+imgdir = './body_img/';
+load examples_cropped.mat
 
 i = 3100;
 i = randi(length(examples));

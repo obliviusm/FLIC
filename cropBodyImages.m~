@@ -1,11 +1,25 @@
 load examples.mat
 imgdir = './images/';
 
+mkdir('body_img');
 for i = 1:3%length(examples)
+%     coords = upperBodyBox(examples(i));
+%     if coords == false
+%         continue;
+%     end
+    boxes = [examples(i).torsobox; upperBodyBox(examples(i), true); makeArmBox(examples(i), 'left'); makeArmBox(examples(i), 'right'); makeFaceBox(examples(i))];
+    coodrs = makeMaxBox(boxes);
+    
+%     imgdir = './images/';
+%     showBoxes( imgdir, examples(i) );
+%     plotbox(coodrs,'m--')
+    
     img = imread([imgdir,'/',examples(i).filepath]);
     
-    baseFileName = 'output image.png';
-    folder = 'c:\users\moniba\documents\images';
-    fullFileName = fullfile(folder, baseFileName);
-    imwrite(fullFileName, croppedImage);
+    croppedImage = imcrop(img, coords);
+    
+    
+    folder = './body_img';
+    fullFileName = fullfile(folder, examples(i).filepath);
+    imwrite(croppedImage, fullFileName);
 end

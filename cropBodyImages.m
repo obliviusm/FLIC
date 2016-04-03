@@ -1,18 +1,30 @@
 load examples.mat
 imgdir = './images/';
 
-for i = 1:length(examples)
+mkdir('body_img');
+for i = 1:1%length(examples)
 %     coords = upperBodyBox(examples(i));
 %     if coords == false
 %         continue;
 %     end
     boxes = [examples(i).torsobox; upperBodyBox(examples(i), true); makeArmBox(examples(i), 'left'); makeArmBox(examples(i), 'right'); makeFaceBox(examples(i))];
-    coodrs = makeMaxBox(boxes);
+    new_coodrs = makeMaxBox(boxes);
     
-    
-    
+%     showBoxes( imgdir, examples(i) );
     img = imread([imgdir,'/',examples(i).filepath]);
-    croppedImage = imcrop(img, coords);
+    cla, imagesc(img), axis image, hold on
+    plotbox(new_coodrs,'m--')
+    
+    
+    x1 = new_coodrs(1);
+    y1 = new_coodrs(2);
+    width = new_coodrs(3) - new_coodrs(1);
+    height = new_coodrs(4) - new_coodrs(2);
+    y1
+    map = [x1, y1, width, height];
+    croppedImage = imcrop(img, map);
+%     cla, imagesc(croppedImage), axis image, hold on
+    
     
     folder = './body_img';
     fullFileName = fullfile(folder, examples(i).filepath);

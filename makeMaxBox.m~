@@ -1,6 +1,0 @@
-function box = makeMaxBox(boxes)
-    x1 = dots(1,:);
-    
-    
-    box = [min(xs) min(ys) max(xs) max(ys)];
-end
