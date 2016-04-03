@@ -4,7 +4,7 @@ imgdir = './body_img/';
 load examples_cropped.mat
 %% display a random image
 i = randi(length(examples));
-i = 617;
+i = 13;
 
 img = imread([imgdir,'/',examples(i).filepath]);
 cla, imagesc(img), axis image, hold on

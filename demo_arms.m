@@ -5,7 +5,7 @@ load examples_cropped.mat
 
 i = 3100;
 i = randi(length(examples));
-i = 617;
+i = 13;
 
 img = imread([imgdir,'/',examples(i).filepath]);
 cla, imagesc(img), axis image, hold on

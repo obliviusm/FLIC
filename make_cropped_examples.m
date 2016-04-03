@@ -1,6 +1,6 @@
 load examples_arms.mat
 
-for i = 1591:length(examples)
+for i = 1:length(examples)
     boxes = [examples(i).torsobox; upperBodyBox(examples(i), true); makeArmBox(examples(i), 'left'); makeArmBox(examples(i), 'right'); makeFaceBox(examples(i))];
     new_coodrs = makeMaxBox(boxes, examples(i).imgdims);
     
