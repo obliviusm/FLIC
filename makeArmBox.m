@@ -1,5 +1,7 @@
 function box = makeArmBox( row, side )
     dims = row.imgdims;
+    
+    bodyDiagonal = bodySize(row, 'diagonal');
     % get main parts
     if( strcmp(side,'left') )
         sho = row.coords(:,lookupPart('lsho'));
@@ -19,7 +21,7 @@ function box = makeArmBox( row, side )
     max_elb = elb + diff;
     min_elb = elb - diff;
     % make some distance from wrist (try to get palm as well)
-    diff = 30;
+    diff = bodyDiagonal * 0.17;
     max_wri = wri + diff;
     min_wri = wri - diff;
     

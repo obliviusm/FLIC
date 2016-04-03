@@ -1,5 +1,7 @@
-load examples.mat
-imgdir = './images/';
+% load examples.mat
+% imgdir = './images/';
+imgdir = './body_img/';
+load examples_cropped.mat
 %% display a random image
 i = randi(length(examples));
 

@@ -1,4 +1,4 @@
-function box = upperBodyBox( row )
+function box = upperBodyBox( row, with_diff )
     dims = row.imgdims;
     
     lsho = row.coords(:,lookupPart('lsho'));
@@ -26,13 +26,20 @@ function box = upperBodyBox( row )
     
     width = assumedBox(3) - assumedBox(1);
     height = assumedBox(4) - assumedBox(2);
-%     k_width = 0.55;% 0.2
-%     k_height = 0.45; %0.23
-%     diff_width = k_width * width;
-%     diff_height = k_height * height;
     
-    diff_width = 100;
-    diff_height = 100;
+    if with_diff
+        k_width = 0.2;
+        k_height = 0.23;
+    else
+        k_width = 0;
+        k_height = 0;
+    end
+    
+    diff_width = k_width * width;
+    diff_height = k_height * height;
+    
+%     diff_width = 100;
+%     diff_height = 100;
     
     assumedBox(1) = assumedBox(1) - diff_width;
     assumedBox(2) = assumedBox(2) - diff_height;

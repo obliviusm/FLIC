@@ -1,5 +1,7 @@
 load examples.mat
 imgdir = './images/';
+% imgdir = './body_img/';
+% load examples_cropped.mat
 
 i = 3100;
 i = randi(length(examples));
@@ -17,5 +19,5 @@ plotbox(rightArmBox,'o--')
 faceBox = makeFaceBox(examples(i));
 plotbox(faceBox,'m--')
 
-bodyBox = upperBodyBox(examples(i));
+bodyBox = upperBodyBox(examples(i), true);
 plotbox(bodyBox,'g--')
