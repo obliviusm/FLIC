@@ -17,7 +17,7 @@ function box = upperBodyBox( row )
     
     allCoords = [lsho lelb lwri rsho relb rwri leye reye lhip rhip];
     
-    if max(isnan(allCoords)) == 1
+    if max(max(isnan(allCoords))) == 1
         box = false;
         return;
     end
