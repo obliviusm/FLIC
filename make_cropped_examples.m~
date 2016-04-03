@@ -1,0 +1,22 @@
+load examples_arms.mat
+
+for i = 1:length(examples)
+    new_coodrs = upperBodyBox(examples(i));
+  
+    examples(i).coords(1,:) = examples(i).coords(1,:) - new_coodrs(1);
+    examples(i).coords(2,:) = examples(i).coords(2,:) - new_coodrs(2);
+    
+    examples(i).imgdims = [new_coodrs(3) - new_coodrs(1), new_coodrs(4) - new_coodrs(2), 3];
+    
+    examples(i).torsobox = examples(i).torsobox - new_coodrs;
+    examples(i).left_arm = examples(i).left_arm - new_coodrs;
+    examples(i).right_arm = examples(i).right_arm - new_coodrs;
+    examples(i).upper_body = examples(i).upper_body - new_coodrs;
+    
+    all_coords = {examples(i).torsobox, examples(i).left_arm, examples(i).right_arm, examples(i).upper_body};
+    if min(min(vertcat(all_coords{:}))) < 0
+        1
+    end
+end
+
+save('examples_cropped.mat', 'examples');
