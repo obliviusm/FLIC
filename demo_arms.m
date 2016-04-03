@@ -5,7 +5,7 @@ imgdir = './images/';
 
 i = 3100;
 i = randi(length(examples));
-% i = 97;
+i = 617;
 
 img = imread([imgdir,'/',examples(i).filepath]);
 cla, imagesc(img), axis image, hold on

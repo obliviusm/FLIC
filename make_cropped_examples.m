@@ -1,7 +1,8 @@
 load examples_arms.mat
 
 for i = 1:length(examples)
-    new_coodrs = upperBodyBox(examples(i));
+    boxes = [examples(i).torsobox; upperBodyBox(examples(i), true); makeArmBox(examples(i), 'left'); makeArmBox(examples(i), 'right'); makeFaceBox(examples(i))];
+    new_coodrs = makeMaxBox(boxes);
   
     examples(i).coords(1,:) = examples(i).coords(1,:) - new_coodrs(1);
     examples(i).coords(2,:) = examples(i).coords(2,:) - new_coodrs(2);
@@ -15,7 +16,8 @@ for i = 1:length(examples)
     examples(i).upper_body = examples(i).upper_body - coord_start;
     
     all_coords = {examples(i).torsobox, examples(i).left_arm, examples(i).right_arm, examples(i).upper_body};
-    if min(min(vertcat(all_coords{:}))) < 0
+    all_coords = vertcat(all_coords{:});
+    if min(min(all_coords)) < -0.1
         1
     end
 end
